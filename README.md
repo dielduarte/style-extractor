@@ -9,6 +9,6 @@ Extract all inline CSS from your HTML generating a css file using two strategies
 
 
 @TODOS
-
+- [ ] DRY code to get style tag value and remove inline style from node.
 - [ ] Write a better documentation with practical examples etc...
 - [ ] deploy a stable version
