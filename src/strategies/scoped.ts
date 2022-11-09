@@ -1,20 +1,30 @@
-import type { StrategyModuleReturn } from "../index.types"
-import { getId } from "../unique-id";
+import type { StrategyModuleReturn } from '../index.types';
+import { getId } from '../unique-id';
 
 const createScopedStrategy = () => {
   let cssFile = '';
   return (): StrategyModuleReturn => {
     return {
       parse: (node, opts) => {
-        const { start } = node.position
+        const isStyle = node.tagName === 'style';
+
+        if (isStyle) {
+          cssFile += node.children[0].value;
+        }
+
+        if (!node.properties.style) {
+          return;
+        }
+
+        const { start } = node.position;
         const uniquePosition = `${start.line}${start.column}${start.offset}`;
         const id = getId(uniquePosition, opts);
         cssFile += `.${id} { ${node.properties.style} }\n`;
-        node.properties.class = `${node.properties.class || ""}${id} `;
+        node.properties.class = `${node.properties.class || ''}${id} `;
       },
-      getCss: () => cssFile
-    }
-  }
-}
+      getCss: () => cssFile,
+    };
+  };
+};
 
-export default createScopedStrategy()
+export default createScopedStrategy();

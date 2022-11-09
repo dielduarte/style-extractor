@@ -6,12 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup src/index.js",
-    "dev": "tsup-node src/index.ts --watch"
+    "dev": "tsup-node src/index.ts --watch",
+    "format": "rome format src/*",
+    "format-save": "rome format src/* --write --quote-style single --indent-style space",
+    "lint": "rome check src/*",
+    "fix": "rome check src/* --apply-suggested"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "rome": "^10.0.0",
     "tsup": "^6.4.0"
   },
   "dependencies": {

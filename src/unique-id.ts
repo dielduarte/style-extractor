@@ -1,5 +1,5 @@
-import murmurhash from "murmurhash";
-import {Options} from './index.types'
+import murmurhash from 'murmurhash';
+import { Options } from './index.types';
 
 /* This is the "capacity" of our alphabet i.e. 2x26 for all letters plus their capitalised
  * counterparts */
@@ -11,7 +11,7 @@ const getAlphabeticChar = (code) =>
 
 /* input a number, usually a hash and convert it to base-52 */
 const generateAlphabeticName = (code) => {
-  let name = "";
+  let name = '';
   let x;
 
   /* get a char and divide by alphabet-length */
