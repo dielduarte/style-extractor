@@ -1,46 +1,44 @@
-import type { StrategyModuleReturn } from '../index.types';
-import { getId } from '../unique-id';
+import type { StrategyModuleReturn } from "../index.types";
+import { getId } from "../unique-id";
 
 const format = (style: string) => {
-  return style.replace(/\s/g, '');
+  return style.replace(/\s/g, "");
 };
 
-const toArray = (style: string, separator = ';') => style.split(separator);
+const toArray = (style: string, separator = ";") => style.split(separator);
 
-const createAtomicStrategy = () => {
-  let cssFile = '';
+export default (): StrategyModuleReturn => {
+  let cssFile = "";
   const atomicMap = new Set();
 
-  return (): StrategyModuleReturn => {
-    return {
-      parse: (node, opts) => {
-        const isStyle = node.tagName === 'style';
+  return {
+    parse: (node, opts) => {
+      const isStyle = node.tagName === "style";
 
-        if (isStyle) {
-          cssFile += node.children[0].value;
-        }
+      if (isStyle) {
+        cssFile += node.children[0].value;
+      }
 
-        if (!node.properties.style) {
-          return;
-        }
+      if (!node.properties.style) {
+        return;
+      }
 
-        toArray(node.properties.style)
-          .filter(Boolean)
-          .map(format)
-          .forEach((style) => {
-            const id = getId(style, opts);
+      toArray(node.properties.style)
+        .filter(Boolean)
+        .map(format)
+        .forEach((style) => {
+          const id = getId(style, opts);
 
-            if (!atomicMap.has(id)) {
-              atomicMap.add(id);
-              cssFile += `.${id} { ${style}}\n`;
-            }
+          if (!atomicMap.has(id)) {
+            atomicMap.add(id);
+            cssFile += `.${id} { ${style}}\n`;
+          }
 
-            node.properties.class = `${node.properties.class || ''}${id} `;
-          });
-      },
-      getCss: () => cssFile,
-    };
+          node.properties.class = `${node.properties.class || ""}${id} `;
+        });
+
+      node.properties.style = undefined;
+    },
+    getCss: () => cssFile,
   };
 };
-
-export default createAtomicStrategy();

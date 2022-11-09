@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`extractStyle => atomic > should generate atomic css 1`] = `
+".es-cwtpWi { width:100%}
+.es-gSvEpd { border:red}
+
+      h1 { line-height: 20px; }
+    .es-jTfyaK { color:white}
+.es-dhZwgM { font-size:14px}
+"
+`;
+
+exports[`extractStyle => atomic > should remove all inline style tags 1`] = `
+"<head><div class=\\"es-cwtpWi es-gSvEpd \\">
+    
+    <h1 class=\\"es-jTfyaK es-dhZwgM \\">title</h1>  
+  </div>
+"
+`;
+
+exports[`extractStyle => atomic > should remove all inline styles 1`] = `
+"<head><div class=\\"es-cwtpWi es-gSvEpd \\">
+    
+    <h1 class=\\"es-jTfyaK es-dhZwgM \\">title</h1>  
+  </div>
+"
+`;
+
+exports[`extractStyle => scoped > should generate scoped css 1`] = `
+".es-chrTOf { width: 100%;border: red; }
+
+      h1 { line-height: 20px; }
+    .es-dfoHTq { color: white; font-size: 14px; }
+"
+`;
+
+exports[`extractStyle => scoped > should remove all inline style tags 1`] = `
+"<head><div class=\\"es-chrTOf \\">
+    
+    <h1 class=\\"es-dfoHTq \\">title</h1>  
+  </div>
+"
+`;
+
+exports[`extractStyle => scoped > should remove all inline styles 1`] = `
+"<head><div class=\\"es-chrTOf \\">
+    
+    <h1 class=\\"es-dfoHTq \\">title</h1>  
+  </div>
+"
+`;

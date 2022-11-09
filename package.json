@@ -4,26 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup src/index.js",
     "dev": "tsup-node src/index.ts --watch",
     "format": "rome format src/*",
     "format-save": "rome format src/* --write --quote-style single --indent-style space",
     "lint": "rome check src/*",
-    "fix": "rome check src/* --apply-suggested"
+    "fix": "rome check src/* --apply-suggested",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vitest/coverage-c8": "^0.25.1",
     "rome": "^10.0.0",
-    "tsup": "^6.4.0"
+    "tsup": "^6.4.0",
+    "vitest": "^0.25.1"
   },
   "dependencies": {
     "@types/node": "^18.11.9",
     "hast-util-from-html": "^1.0.0",
     "hast-util-to-html": "^8.0.3",
     "murmurhash": "^2.0.1",
+    "unist-util-remove": "^3.1.0",
     "unist-util-visit": "^4.1.1"
   }
 }

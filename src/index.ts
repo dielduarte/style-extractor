@@ -1,15 +1,16 @@
-import { fromHtml } from 'hast-util-from-html';
-import { toHtml } from 'hast-util-to-html';
-import { visit } from 'unist-util-visit';
+import { fromHtml } from "hast-util-from-html";
+import { toHtml } from "hast-util-to-html";
+import { visit } from "unist-util-visit";
+import { remove } from "unist-util-remove";
 
-import { Options, Strategy } from './index.types';
+import { Options, Strategy } from "./index.types";
 
-import atomic from './strategies/atomic';
-import scoped from './strategies/scoped';
+import atomic from "./strategies/atomic";
+import scoped from "./strategies/scoped";
 
 const defaultOptions: Options = {
   strategy: Strategy.atomic,
-  classPrefix: 'es-',
+  classPrefix: "es-",
 };
 
 const strategies = {
@@ -24,10 +25,11 @@ export const extractStyle = async (
   const tree = fromHtml(initialHtml);
   const strategy = strategies[opts.strategy]();
 
-  visit(tree, 'element', (node) => {
+  visit(tree, "element", (node) => {
     strategy.parse(node, opts);
-    node.properties.style = undefined;
   });
+
+  remove(tree, (node) => node.tagName === "style");
 
   return {
     // @TODO remove extra tags
