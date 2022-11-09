@@ -1,7 +1,7 @@
-import { expect, it, describe, vi } from "vitest";
+import { expect, it, describe, vi } from 'vitest';
 
-import { extractStyle } from "./index";
-import { Strategy } from "./index.types";
+import { extractStyle } from './index';
+import { Strategy } from './index.types';
 
 const html = `
   <div style="width: 100%;border: red;">
@@ -14,43 +14,43 @@ const html = `
 
 const defaultOptions = {
   strategy: Strategy.scoped,
-  classPrefix: "es-",
+  classPrefix: 'es-',
 };
 
-describe("extractStyle => scoped", () => {
-  it("should remove all inline styles", async () => {
+describe('extractStyle => scoped', () => {
+  it('should remove all inline styles', async () => {
     const result = await extractStyle(html, defaultOptions);
     expect(result.html).toMatchSnapshot();
   });
 
-  it("should remove all inline style tags", async () => {
+  it('should remove all inline style tags', async () => {
     const result = await extractStyle(html, defaultOptions);
 
     expect(result.html).toMatchSnapshot();
   });
 
-  it("should generate scoped css", async () => {
+  it('should generate scoped css', async () => {
     const result = await extractStyle(html, defaultOptions);
 
     expect(result.css).toMatchSnapshot();
   });
 });
 
-describe("extractStyle => atomic", () => {
+describe('extractStyle => atomic', () => {
   const options = { ...defaultOptions, strategy: Strategy.atomic };
 
-  it("should remove all inline styles", async () => {
+  it('should remove all inline styles', async () => {
     const result = await extractStyle(html, options);
     expect(result.html).toMatchSnapshot();
   });
 
-  it("should remove all inline style tags", async () => {
+  it('should remove all inline style tags', async () => {
     const result = await extractStyle(html, options);
 
     expect(result.html).toMatchSnapshot();
   });
 
-  it("should generate atomic css", async () => {
+  it('should generate atomic css', async () => {
     const result = await extractStyle(html, options);
 
     expect(result.css).toMatchSnapshot();

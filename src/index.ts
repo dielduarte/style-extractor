@@ -1,16 +1,16 @@
-import { fromHtml } from "hast-util-from-html";
-import { toHtml } from "hast-util-to-html";
-import { visit } from "unist-util-visit";
-import { remove } from "unist-util-remove";
+import { fromHtml } from 'hast-util-from-html';
+import { toHtml } from 'hast-util-to-html';
+import { visit } from 'unist-util-visit';
+import { remove } from 'unist-util-remove';
 
-import { Options, Strategy } from "./index.types";
+import { Options, Strategy } from './index.types';
 
-import atomic from "./strategies/atomic";
-import scoped from "./strategies/scoped";
+import atomic from './strategies/atomic';
+import scoped from './strategies/scoped';
 
 const defaultOptions: Options = {
   strategy: Strategy.atomic,
-  classPrefix: "es-",
+  classPrefix: 'es-',
 };
 
 const strategies = {
@@ -22,18 +22,19 @@ export const extractStyle = async (
   initialHtml: string,
   opts: Options = defaultOptions,
 ) => {
-  const tree = fromHtml(initialHtml);
+  const tree = fromHtml(initialHtml, { fragment: true });
+
   const strategy = strategies[opts.strategy]();
 
-  visit(tree, "element", (node) => {
+  visit(tree, 'element', (node) => {
     strategy.parse(node, opts);
   });
 
-  remove(tree, (node) => node.tagName === "style");
+  // @ts-ignore
+  remove(tree, (node) => node.tagName === 'style');
 
   return {
-    // @TODO remove extra tags
-    html: toHtml(tree, { omitOptionalTags: true }),
+    html: toHtml(tree),
     css: strategy.getCss(),
   };
 };

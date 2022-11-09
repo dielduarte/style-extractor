@@ -11,7 +11,8 @@ exports[`extractStyle => atomic > should generate atomic css 1`] = `
 `;
 
 exports[`extractStyle => atomic > should remove all inline style tags 1`] = `
-"<head><div class=\\"es-cwtpWi es-gSvEpd \\">
+"
+  <div class=\\"es-cwtpWi es-gSvEpd \\">
     
     <h1 class=\\"es-jTfyaK es-dhZwgM \\">title</h1>  
   </div>
@@ -19,7 +20,8 @@ exports[`extractStyle => atomic > should remove all inline style tags 1`] = `
 `;
 
 exports[`extractStyle => atomic > should remove all inline styles 1`] = `
-"<head><div class=\\"es-cwtpWi es-gSvEpd \\">
+"
+  <div class=\\"es-cwtpWi es-gSvEpd \\">
     
     <h1 class=\\"es-jTfyaK es-dhZwgM \\">title</h1>  
   </div>
@@ -35,7 +37,8 @@ exports[`extractStyle => scoped > should generate scoped css 1`] = `
 `;
 
 exports[`extractStyle => scoped > should remove all inline style tags 1`] = `
-"<head><div class=\\"es-chrTOf \\">
+"
+  <div class=\\"es-chrTOf \\">
     
     <h1 class=\\"es-dfoHTq \\">title</h1>  
   </div>
@@ -43,7 +46,8 @@ exports[`extractStyle => scoped > should remove all inline style tags 1`] = `
 `;
 
 exports[`extractStyle => scoped > should remove all inline styles 1`] = `
-"<head><div class=\\"es-chrTOf \\">
+"
+  <div class=\\"es-chrTOf \\">
     
     <h1 class=\\"es-dfoHTq \\">title</h1>  
   </div>

@@ -1,19 +1,19 @@
-import type { StrategyModuleReturn } from "../index.types";
-import { getId } from "../unique-id";
+import type { StrategyModuleReturn } from '../index.types';
+import { getId } from '../unique-id';
 
 const format = (style: string) => {
-  return style.replace(/\s/g, "");
+  return style.replace(/\s/g, '');
 };
 
-const toArray = (style: string, separator = ";") => style.split(separator);
+const toArray = (style: string, separator = ';') => style.split(separator);
 
 export default (): StrategyModuleReturn => {
-  let cssFile = "";
+  let cssFile = '';
   const atomicMap = new Set();
 
   return {
     parse: (node, opts) => {
-      const isStyle = node.tagName === "style";
+      const isStyle = node.tagName === 'style';
 
       if (isStyle) {
         cssFile += node.children[0].value;
@@ -34,7 +34,7 @@ export default (): StrategyModuleReturn => {
             cssFile += `.${id} { ${style}}\n`;
           }
 
-          node.properties.class = `${node.properties.class || ""}${id} `;
+          node.properties.class = `${node.properties.class || ''}${id} `;
         });
 
       node.properties.style = undefined;

@@ -1,12 +1,12 @@
-import type { StrategyModuleReturn } from "../index.types";
-import { getId } from "../unique-id";
+import type { StrategyModuleReturn } from '../index.types';
+import { getId } from '../unique-id';
 
 export default (): StrategyModuleReturn => {
-  let cssFile = "";
+  let cssFile = '';
 
   return {
     parse: (node, opts) => {
-      const isStyle = node.tagName === "style";
+      const isStyle = node.tagName === 'style';
 
       if (isStyle) {
         cssFile += node.children[0].value;
@@ -20,7 +20,7 @@ export default (): StrategyModuleReturn => {
       const uniquePosition = `${start.line}${start.column}${start.offset}`;
       const id = getId(uniquePosition, opts);
       cssFile += `.${id} { ${node.properties.style} }\n`;
-      node.properties.class = `${node.properties.class || ""}${id} `;
+      node.properties.class = `${node.properties.class || ''}${id} `;
       node.properties.style = undefined;
     },
     getCss: () => cssFile,

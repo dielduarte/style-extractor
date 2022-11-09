@@ -10,9 +10,5 @@ Extract all inline CSS from your HTML generating a css file using two strategies
 
 @TODOS
 
-- [ ] add prettier
-- [ ] extract inline <style> tags
-- [ ] unit test the library
-- [ ] fix missing TS types
 - [ ] Write a better documentation with practical examples etc...
 - [ ] deploy a stable version
