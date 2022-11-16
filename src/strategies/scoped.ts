@@ -1,18 +1,13 @@
-import type { StrategyModuleReturn } from '../index.types';
+import type { Options, StrategyModuleReturn } from '../index.types';
 import { getId } from '../unique-id';
+import { sharedParsing } from './shared';
 
 export default (): StrategyModuleReturn => {
   let cssFile = '';
 
   return {
-    parse: (node, opts) => {
-      const isStyle = node.tagName === 'style';
-
-      if (isStyle) {
-        cssFile += node.children[0].value;
-      }
-
-      if (!node.properties.style) {
+    parse: sharedParsing((node, opts) => {
+      if (!(node.position && node.properties)) {
         return;
       }
 
@@ -21,8 +16,7 @@ export default (): StrategyModuleReturn => {
       const id = getId(uniquePosition, opts);
       cssFile += `.${id} { ${node.properties.style} }\n`;
       node.properties.class = `${node.properties.class || ''}${id} `;
-      node.properties.style = undefined;
-    },
+    }, cssFile),
     getCss: () => cssFile,
   };
 };

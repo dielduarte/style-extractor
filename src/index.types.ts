@@ -1,10 +1,14 @@
+import type { Element } from 'hast-util-to-html/lib/types';
+
 export enum Strategy {
   scoped = 'scoped',
   atomic = 'atomic',
 }
 
+export type Parse = (node: Element, opts: Options) => void;
+
 export type StrategyModuleReturn = {
-  parse: (node: any, opts: Options) => void;
+  parse: Parse;
   getCss: () => string;
 };
 
