@@ -20,30 +20,30 @@ Extract all inline CSS from your HTML generating a css file for it.
   console.log(html, css)
   ```
 
-### Options
+  ### Options
 
-| Option | Values  | Default |
-|---|---|---|
-| strategy: Strategy  |  Strategy.atomic \| Strategy.scoped | Strategy.atomic |
-| classPrefix: string  |  string value | es-  |
+  | Option | Values  | Default |
+  |---|---|---|
+  | strategy: Strategy  |  Strategy.atomic \| Strategy.scoped | Strategy.atomic |
+  | classPrefix: string  |  string value | es-  |
 
-To configure the options you can pass an object as a second parameter, example:
+  To configure the options you can pass an object as a second parameter, example:
 
-```js
+  ```js
 
-import { extractStyle } from 'style-extractor';
-import type { Strategy } from 'style-extractor';
+  import { extractStyle } from 'style-extractor';
+  import type { Strategy } from 'style-extractor';
 
-const { html, css } = extractStyle(
-  `html input here`,
-  { 
-    strategy: Strategy.scoped, 
-    classPrefix: 'my-prefix-' 
-  }
-)
+  const { html, css } = extractStyle(
+    `html input here`,
+    { 
+      strategy: Strategy.scoped, 
+      classPrefix: 'my-prefix-' 
+    }
+  )
 
-console.log(html, css)
-```
+  console.log(html, css)
+  ```
 
 ## Strategies
 
