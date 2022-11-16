@@ -1,4 +1,4 @@
-# Style Extractor - WIP
+# Style Extractor
 
 Extract all inline CSS from your HTML generating a css file for it.
 
