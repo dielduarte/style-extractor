@@ -22,10 +22,10 @@ Extract all inline CSS from your HTML generating a css file for it.
 
 ### Options
 
-| Option | Values  |
-|---|---|
-| strategy: Strategy  |  Strategy.atomic \| Strategy.scoped **Default =** Strategy.atomic |
-| classPrefix: string  |  string value **Default = es-** |
+| Option | Values  | Default |
+|---|---|---|
+| strategy: Strategy  |  Strategy.atomic \| Strategy.scoped | Strategy.atomic |
+| classPrefix: string  |  string value | es-  |
 
 To configure the options you can pass an object as a second parameter, example:
 
