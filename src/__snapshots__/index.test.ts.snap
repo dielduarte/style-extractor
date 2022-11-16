@@ -3,7 +3,9 @@
 exports[`extractStyle => atomic > should generate atomic css 1`] = `
 ".es-cwtpWi { width:100%}
 .es-gSvEpd { border:red}
-.es-jTfyaK { color:white}
+
+      h1 { line-height: 20px; }
+    .es-jTfyaK { color:white}
 .es-dhZwgM { font-size:14px}
 "
 `;
@@ -28,7 +30,9 @@ exports[`extractStyle => atomic > should remove all inline styles 1`] = `
 
 exports[`extractStyle => scoped > should generate scoped css 1`] = `
 ".es-chrTOf { width: 100%;border: red; }
-.es-dfoHTq { color: white; font-size: 14px; }
+
+      h1 { line-height: 20px; }
+    .es-dfoHTq { color: white; font-size: 14px; }
 "
 `;
 

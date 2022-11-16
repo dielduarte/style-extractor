@@ -13,35 +13,38 @@ export default (): StrategyModuleReturn => {
   const atomicMap = new Set();
 
   return {
-    parse: sharedParsing((node, opts) => {
-      if (!node.properties) {
-        return;
-      }
+    parse: sharedParsing(
+      (node, opts) => {
+        if (!node.properties) {
+          return;
+        }
 
-      // ts says style can be something else other than a string here
-      // but the problem is just the way a property can is represented
-      // which is basically a generic, style is always a string.
-      // export interface Properties {
-      //   [PropertyName: string]: boolean | number | string | null | undefined | Array<string | number>;
-      // }
-      toArray(node.properties.style as unknown as string)
-        .filter(Boolean)
-        .map(format)
-        .forEach((style) => {
-          const id = getId(style, opts);
+        // ts says style can be something else other than a string here
+        // but the problem is just the way a property can is represented
+        // which is basically a generic, style is always a string.
+        // export interface Properties {
+        //   [PropertyName: string]: boolean | number | string | null | undefined | Array<string | number>;
+        // }
+        toArray(node.properties.style as unknown as string)
+          .filter(Boolean)
+          .map(format)
+          .forEach((style) => {
+            const id = getId(style, opts);
 
-          if (!atomicMap.has(id)) {
-            atomicMap.add(id);
-            cssFile += `.${id} { ${style}}\n`;
-          }
+            if (!atomicMap.has(id)) {
+              atomicMap.add(id);
+              cssFile += `.${id} { ${style}}\n`;
+            }
 
-          if (!node.properties) {
-            node.properties = {};
-          }
+            if (!node.properties) {
+              node.properties = {};
+            }
 
-          node.properties.class = `${node.properties.class || ''}${id} `;
-        });
-    }, cssFile),
+            node.properties.class = `${node.properties.class || ''}${id} `;
+          });
+      },
+      (value) => (cssFile += value),
+    ),
     getCss: () => cssFile,
   };
 };
