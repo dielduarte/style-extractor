@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsup src/index.js",
+    "build": "tsup src/index.ts",
     "dev": "tsup-node src/index.ts --watch",
     "format": "rome format src/*",
     "format-save": "rome format src/* --write",
@@ -20,6 +20,7 @@
     "@vitest/coverage-c8": "^0.25.1",
     "rome": "^10.0.0",
     "tsup": "^6.4.0",
+    "typescript": "^4.9.3",
     "vitest": "^0.25.1"
   },
   "dependencies": {
