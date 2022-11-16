@@ -116,4 +116,6 @@ console.log(html, css)
 
 
 @TODOS
+
+- [ ] deploy stable version to npm
 - [ ] Option to create file in disk
