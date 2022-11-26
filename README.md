@@ -117,5 +117,4 @@ Extract all inline CSS from your HTML generating a css file for it.
 
 @TODOS
 
-- [ ] deploy stable version to npm
 - [ ] Option to create file in disk
