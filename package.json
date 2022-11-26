@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
+  "files": ["dist/*"],
+  "scripts": {  
+    "prepublish": "yarn build",
     "build": "tsup src/index.ts",
     "dev": "tsup-node src/index.ts --watch",
     "format": "rome format src/*",
