@@ -18,7 +18,7 @@ const strategies = {
   [Strategy.scoped]: scoped,
 };
 
-export const extractStyle = async (
+export const extractStyle = (
   initialHtml: string,
   opts: Options = defaultOptions,
 ) => {

@@ -2,13 +2,20 @@
   "name": "style-extractor",
   "version": "1.0.2",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
   "files": [
     "dist/*"
   ],
   "scripts": {
     "prepublish": "yarn build",
-    "build": "tsup src/index.ts",
+    "build": "tsup src/index.ts --format esm,cjs --clean",
     "dev": "tsup-node src/index.ts --watch",
     "format": "rome format src/*",
     "format-save": "rome format src/* --write",
